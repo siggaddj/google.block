@@ -1,0 +1,558 @@
+<!DOCTYPE html><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Blocked</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+  <style>
+    html {
+      box-sizing: border-box;
+      display: flex;
+      min-height: 100%;
+      min-height: 100vh;
+      width: 100%;
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+    body {
+      background: linear-gradient(to bottom, #444652, #28282E);
+      display: flex;
+      font: 14px/1.3 "Roboto", Arial, sans-serif;
+      min-height: 100%;
+      min-height: 100vh;
+      margin: 0;
+      width: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .arrow-down {
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid #00AFD7;
+      border-top: 8px solid #862633;
+      height: 0;
+      left: 152px;
+      position: relative;
+      top: 12px;
+      width: 0;
+      z-index: -1;
+    }
+    .blockScreen {
+      align-items: center;
+      color: #666e80;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100%;
+      min-height: 100vh;
+      position: relative;
+      text-align: center;
+      width: 100%;
+      z-index: 0;
+    }
+    .blockScreen a {
+      color: #666e80;
+    }
+    .blockScreen svg {
+      margin: 16px 0 8px;
+    }
+    .blockScreen .svgAccessBlocked-paths {
+      stroke: #00AFD7;
+      stroke: #862633;
+    }
+    .blockScreen .blockScreen-customSchoolName {
+      color: white;
+      font: 400 18px/1 "Roboto", Arial, sans-serif;
+      margin: 0 16px;
+    }
+    .blockScreen .blockScreen-mediumTitle {
+      color: white;
+      font: 400 24px/1 "Roboto", Arial, sans-serif;
+      margin: 0 16px;
+    }
+    .blockScreen .lockoutScreen-stripe {
+      display: none;
+    }
+    .blockScreen .lockoutScreen-svg {
+      display: none;
+    }
+    .blockScreen .blockScreen-stripe {
+      background: #00AFD7;
+      background: #862633;
+      color: rgba(255, 255, 255, 0.8);
+      flex: 0 1 auto;
+      margin: 32px 0;
+      padding: 24px 16px;
+      width: 100%;
+    }
+    .blockScreen .blockScreenStripe-website {
+      font: 30px "Roboto", Arial, sans-serif;
+      color: white;
+    }
+    .blockScreen .blockScreen-systemMessage,
+    .blockScreen .blockScreen-customBodyText {
+      margin: 0 16px 8px;
+      max-width: 640px;
+    }
+    .blockScreen .blockScreen-override {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      color: white;
+      display: inline-block;
+      line-height: 34px;
+      margin: 16px;
+      min-width: 80px;
+      padding: 0 16px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .blockScreen .blockScreen-override:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .blockScreen .blockScreen-customFooterText {
+      margin-bottom: 16px;
+      font-size: 12px;
+      left: 0;
+      padding: 0 16px;
+      width: 100%;
+    }
+    .blockScreenStripe-bottom, a.blockScreenStripe-bottom {
+      background: #00AFD7;
+      background: #862633;
+      color: rgba(255, 255, 255, 0.8);
+      display: block;
+      margin: 16px;
+    }
+    .blockScreen-action, a.blockScreen-action {
+      color: #00AFD7;
+      color: #862633;
+      display: block;
+      margin: 16px;
+    }
+    .blockScreen-action a {
+      color: #00AFD7;
+      color: #862633;
+      display: inline-block;
+    }
+    .blockScreen-error, a.blockScreen-error {
+      color: #00AFD7;
+      color: #862633;
+      display: block;
+      margin: 16px;
+    }
+    .bottom--4 {
+      bottom: 4px;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .code {
+      display: none;
+    }
+    .lockoutScreen .blockScreen-svg {
+      display: none;
+    }
+    .lockoutScreen .lockoutScreen-svg {
+      display: block;
+    }
+    .lockoutScreen .blockScreen-stripe {
+      display: none;
+    }
+    .lockoutScreen .lockoutScreen-stripe {
+      background: #00AFD7;
+      background: #862633;
+      color: rgba(255, 255, 255, 0.8);
+      display: block;
+      flex: 0 1 auto;
+      font-size: 32px;
+      margin: 32px 0;
+      padding: 24px 16px;
+      width: 100%;
+    }
+    .lockoutScreen .lockoutScreen-stripe .lockoutScreen-stripeContent {
+      margin: 0 auto;
+      max-width: 700px;
+    }
+    .lockoutScreen .blockScreen-controls {
+      margin: 16px 0;
+    }
+    .lockoutScreen .code {
+      background: transparent;
+      border: 1px solid #666e80;
+      border-bottom-left-radius: 4px;
+      border-right: 0;
+      border-top-left-radius: 4px;
+      color: #666e80;
+      display: inline-block;
+      font: 14px/1.3 "Roboto", Arial, sans-serif;
+      line-height: 34px;
+      margin-right: -4px;
+      padding: 0 16px;
+      vertical-align: top;
+    }
+    .lockoutScreen .blockScreen-override {
+      background: #666e80;
+      border-color: #666e80;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      display: inline-block;
+      margin: 0;
+    }
+    .lockoutScreen .blockScreen-override:hover {
+      background: rgba(255, 255, 255, 0.2a);
+    }
+    .formElement.termsOfService {
+      margin: 16px;
+    }
+    .termsOfService, .rocketAuth {
+      background-color: transparent;
+      color: white;
+      max-width: 700px;
+    }
+    .rocketAuth > .button, .button.rocketAuth {
+      background-color: #00AFD7;
+      background-color: #862633;
+      border-color: #00AFD7;
+      border-color: #862633;
+      border-radius: 0;
+      color: white;
+      font-size: 14px;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 16px;
+      vertical-align: top;
+    }
+    @-webkit-keyframes autofill {
+      to {
+        color: white;
+        background: transparent;
+      }
+    }
+    input:-webkit-autofill {
+      -webkit-animation-name: autofill;
+      -webkit-animation-fill-mode: both;
+    }
+    input.rocketAuth, select.rocketAuth, .button.rocketAuth{
+      border-color: #00AFD7;
+      border-color: #862633;
+      border-radius: 0;
+      border-style: solid;
+      border-width: 2px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      height: 36px;
+      min-width: 160px;
+      padding: 0 10px;
+      -webkit-appearance: none;
+    }
+    form.rocketAuth {
+      margin-bottom: 8px;
+    }
+    .rocketAuth {
+      margin-left: 0 !important;
+      margin-right: -2px !important;
+    }
+    .formElement-optionList {
+      list-style: none;
+    }
+    .m-bottom--8 {
+      margin-bottom: 8px!important;
+    }
+    .m-right--8 {
+      margin-right: 8px!important;
+    }
+    .m-bottom--0 {
+      margin-bottom: 0 !important;
+    }
+    .m-top--8 {
+      margin-top: 8px !important
+    }
+    .width-min--220px {
+      min-width: 220px;
+    }
+    .position--relative {
+      position: relative;
+    }
+    .text-align--left {
+      text-align: left;
+    }
+    .form--inline > .button, {
+      display: inline-block;
+    }
+    .form--inline > .formElement-input {
+      display: inline-block;
+      margin: 0 4px 0 0;
+    }
+    .form--inline > .formElement-optionList {
+      display: inline-block;
+      margin: 6px 0;
+    }
+    .form--inline > .formElement-optionList > li {
+      display: inline-block;
+      margin: 0 4px 0 0;
+    }
+  </style>
+  <script type="text/javascript">
+    let activeDirectories = [{"name":"Stow AD","guid":"daeb2107-d032-4f32-b27c-d49898ea6f74"}]
+    const authSources = ["4fae5a3b-7ab1-4462-a43f-a69ec40a739d","daeb2107-d032-4f32-b27c-d49898ea6f74"];
+    const catID =  4 ;
+    let googles = [{"name":"Stow Google","guid":"4fae5a3b-7ab1-4462-a43f-a69ec40a739d"}]
+    const locale = "en-US";
+    let microsofts = []
+    const reason = "cat";
+    const showPage = "";
+    const username = "";
+    function showRocketSystemMessage() {
+      document.getElementById('default-block-screen-message').classList.add('hidden');
+      document.getElementById('rocket-block-screen-message').classList.remove('hidden');
+    }
+    function hideRocketSystemMessage() {
+      document.getElementById('rocket-block-screen-message').classList.add('hidden');
+      document.getElementById('default-block-screen-message').classList.remove('hidden');
+    }
+    function hideDefaults() {
+      const defaultElements = document.getElementsByClassName('default');
+      for(var i = 0; i < defaultElements.length; i++) {
+        const element = defaultElements[i];
+        if (element && element.classList) {
+          element.classList.add('hidden');
+        }
+      }
+    }
+    function showRocket() {
+      hideDefaults();
+      document.getElementById('rocket-block-screen-message').classList.add('hidden')
+      document.getElementById('rocket-svg').classList.remove('hidden');
+      document.getElementById('rocket').classList.remove('hidden');
+    }
+    function clickAlert(e) {
+      if (!document.getElementById('accept-terms-of-service').querySelector('#checkbox').checked) {
+        e.preventDefault();
+        alert('Please accept the terms of service first.');
+      }
+    }
+    function backToLogin() {
+      document.getElementById('rocket-svg').classList.remove('hidden');
+      document.getElementById('rocket').classList.remove('hidden');
+      document.getElementById('signed-out').classList.add('hidden');
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      activeDirectories = activeDirectories.filter((a) => { return authSources.indexOf(a.guid) > -1; });
+      googles = googles.filter((a) => { return authSources.indexOf(a.guid) > -1; });
+      microsofts = microsofts.filter((a) => { return authSources.indexOf(a.guid) > -1; });
+      if (activeDirectories.length > 0) {
+        for (var i = 0; i < activeDirectories.length; i++) {
+          const option = document.createElement('option');
+          option.text = activeDirectories[i].name;
+          option.value = JSON.stringify(activeDirectories[i]);
+          document.getElementById('active-directory-source').add(option);
+        }
+        document.getElementById('active-directory-source').value = JSON.stringify(activeDirectories[0]);
+        document.getElementById('active-directory-form').classList.remove('hidden');
+      }
+      if (googles.length > 0) {
+        document.getElementById('google-source').value = JSON.stringify(googles[0]);
+        document.getElementById('sign-in-with-google').classList.remove('hidden');
+      }
+      if (microsofts.length > 0) {
+        document.getElementById('microsoft-source').value = JSON.stringify(microsofts[0]);
+        document.getElementById('sign-in-with-microsoft').classList.remove('hidden');
+      }
+      if (showPage === 'captivePortal' || showPage === 'login') {
+        hideDefaults();
+        if (showPage === 'captivePortal') {
+          if (document.getElementById('accept-terms-of-service')) {
+            document.getElementById('ad-sign-in').addEventListener('click',clickAlert);
+            document.getElementById('sign-in-with-google').addEventListener('click',clickAlert);
+            document.getElementById('sign-in-with-microsoft').addEventListener('click',clickAlert);
+          }
+        }
+        backToLogin();
+      } else if (showPage === 'signedIn') {
+        hideDefaults();
+        document.getElementById('signed-in').classList.remove('hidden');
+        document.getElementById('rocket-svg').classList.remove('hidden');
+      } else if (showPage === 'signedOut') {
+        hideDefaults();
+        document.getElementById('signed-out').classList.remove('hidden');
+        document.getElementById('rocket-svg').classList.remove('hidden');
+      } else {
+        const categories = JSON.parse(document.getElementById('categories').value);
+        const translations = JSON.parse(document.getElementById('translations').value);
+        let tloc = locale;
+        if (typeof(translations[tloc]) === 'undefined') {
+          tloc = 'en';
+        }
+
+        let text = '';
+        switch (reason) {
+        case 'yt':
+          text = translations[tloc].org_youtube_rules;
+          break;
+        case 'url':
+          text = translations[tloc].custom_block_list;
+          break;
+        case 'ext':
+          text = translations[tloc].file_ext_blocked;
+          break;
+        case 'search':
+          text = translations[tloc].search_term_used;
+          break;
+        default:
+          text = `${translations[tloc].categorized_as} ${categories[catID]}`;
+          break;
+        }
+        document.getElementById('reason').innerText = text;
+      }
+
+      if (showPage !== 'captivePortal') {
+        if ((el = document.getElementById('accept-terms-of-service')) != null) {
+          el.classList.add('hidden');
+          document.getElementById('terms-of-service').innerHTML = "&nbsp;";
+        }
+      }
+      if (username.length == 0) {
+        document.getElementById('unknown-user').classList.remove('hidden');
+      } else {
+        document.getElementById('known-user').classList.remove('hidden');
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="blockScreen">
+    <div id="rocket-svg" class="hidden">
+      <svg width="53" height="66" xmlns="http://www.w3.org/2000/svg">
+        <g id="Student-Screens" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+          <g class="svgAccessBlocked-paths" id="captive-portal---TOS" transform="translate(-614 -178)" stroke="#00AFD7" stroke-width="2">
+            <g id="form-+-Log-in-to-browse-the-+-Malelock" transform="translate(400 179)">
+              <g id="blockpage-browse" transform="translate(215)">
+                <path d="M46.545 23.273C46.545 10.42 36.125 0 23.273 0 10.42 0 0 10.42 0 23.273s10.42 23.272 23.273 23.272" id="Oval-597"></path>
+                <path d="M23.233 44.492V0" id="Line-199" stroke-linecap="square"></path>
+                <path d="M45.861 22.153H2.053" id="Line-200" stroke-linecap="square"></path>
+                <path d="M36.963 23.957c0-12.475-6.13-22.588-13.69-22.588-7.561 0-13.69 10.113-13.69 22.588 0 12.475 6.129 22.588 13.69 22.588" id="Oval-596" stroke-linecap="round"></path>
+                <path id="Rectangle-382" stroke-linecap="square" d="M29.091 32.582h20.945v24.436H29.091z"></path>
+                <path d="M32.582 38.4l2.327-2.327" id="Line" stroke-linecap="round"></path>
+                <path id="Rectangle-382-Copy" stroke-linecap="square" d="M29.091 57.018h20.945V64H29.091z"></path>
+                <path id="Rectangle-382-Copy-2" stroke-linecap="square" d="M29.091 27.927h20.945v4.655H29.091z"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="hidden" id="signed-in">
+      <div class="blockScreenStripe-website">You have signed in successfully.</div>
+      <div class="blockScreen-action">Close this tab or enter a website in the address bar to start browsing.</div>
+    </div>
+    <div class="hidden" id="signed-out">
+      <div class="blockScreenStripe-website">You have signed out.</div>
+      <a class="blockScreen-action" onclick="backToLogin()" href="#">Sign in again?</a>
+    </div>
+    <div id="rocket" class="hidden">
+      <div class="blockScreen-mediumTitle">Sign in to browse the Internet.</div>
+      <div id="terms-of-service" class="termsOfService"></div>
+      <div>
+        
+        
+      </div>
+      <form id="active-directory-form" class="form--inline rocketAuth hidden" action="https://st-blocked.neonet.org:8443/login" method="post">
+        <div class="formElement-input rocketAuth">
+          <span class="arrow-down"></span>
+          <select class="rocketAuth" id="active-directory-source" name="active-directory">
+          </select>
+        </div>
+        <div class="formElement-input rocketAuth">
+          <input class="rocketAuth" id="rocket-auth-user-name" name="rocket-auth-user-name" placeholder="Username" type="text"/>
+        </div>
+        <div class="formElement-input rocketAuth">
+          <input class="rocketAuth" id="password" name="password" placeholder="Password" type="password"/>
+        </div>
+        <button type="submit" id="ad-sign-in" class="button rocketAuth">
+          Sign In
+        </button>
+      <input id="state" type="hidden" name="state" value=""/><input id="redirect" type="hidden" name="redirect" value=""/></form>
+      <form id="terms-of-service-sign-in" class="hidden" action="https://st-blocked.neonet.org:8443/login" method="post">
+        <button class="button rocketAuth m-horizontal--0">Sign In
+        </button>
+      <input id="state" type="hidden" name="state" value=""/><input id="redirect" type="hidden" name="redirect" value=""/></form>
+      <form class="form--inline rocketAuth m-bottom--8" action="https://st-blocked.neonet.org:8443/login" method="post">
+        <input id="google-source" name="google" type="hidden"/>
+        <button id="sign-in-with-google" class="button width-min--220px hidden text-align--left">
+          <span class="m-right--8">
+            <svg class="m-bottom--0 m-top--8 position-relative" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <path d="m17.64 9.20454545c0-.63818181-.0572727-1.25181818-.1636364-1.84090909h-8.4763636v3.48136364h4.8436364c-.2086364 1.125-.8427273 2.0781818-1.7959091 2.7163636v2.2581819h2.9086363c1.7018182-1.5668182 2.6836364-3.874091 2.6836364-6.61500005z" fill="#4285f4"></path>
+                <path d="m9 18c2.43 0 4.4672727-.8059091 5.9563636-2.1804545l-2.9086363-2.2581819c-.8059091.54-1.8368182.8590909-3.0477273.8590909-2.34409091 0-4.32818182-1.5831818-5.03590909-3.7104545h-3.00681818v2.3318182c1.48090909 2.9413636 4.52454545 4.9581818 8.04272727 4.9581818z" fill="#34a853"></path>
+                <path d="m3.96409091 10.71c-.18-.54-.28227273-1.11681818-.28227273-1.71s.10227273-1.17.28227273-1.71v-2.33181818h-3.00681818c-.60954546 1.215-.95727273 2.58954545-.95727273 4.04181818 0 1.4522727.34772727 2.8268182.95727273 4.0418182z" fill="#fbbc05"></path>
+                <path d="m9 3.57954545c1.3213636 0 2.5077273.45409091 3.4404545 1.3459091l2.5813637-2.58136364c-1.5586364-1.45227273-3.5959091-2.34409091-6.0218182-2.34409091-3.51818182 0-6.56181818 2.01681818-8.04272727 4.95818182l3.00681818 2.33181818c.70772727-2.12727273 2.69181818-3.71045455 5.03590909-3.71045455z" fill="#ea4335"></path>
+              </g>
+            </svg>
+          </span>
+          <span class="position--relative bottom--4">Sign In with Google</span>
+        </button>
+      <input id="state" type="hidden" name="state" value=""/><input id="redirect" type="hidden" name="redirect" value=""/></form>
+      <form class="form--inline rocketAuth m-bottom--8" action="https://st-blocked.neonet.org:8443/login" method="post">
+        <input id="microsoft-source" name="microsoft" type="hidden"/>
+        <button id="sign-in-with-microsoft" class="button width-min--220px hidden text-align--left">
+          <span class="m-right--8">
+            <svg class="m-bottom--0 m-top--8 position--relative" height="19" viewBox="0 0 19 19" width="19" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none">
+                <path d="m0 0h9v9h-9z" fill="#f25022"></path>
+                <path d="m0 10h9v9h-9z" fill="#00a4ef"></path>
+                <path d="m10 0h9v9h-9z" fill="#7fba00"></path>
+                <path d="m10 10h9v9h-9z" fill="#ffb900"></path>
+              </g>
+            </svg>
+          </span>
+          <span class="position--relative bottom--4">Sign In with Microsoft</span>
+        </button>
+      <input id="state" type="hidden" name="state" value=""/><input id="redirect" type="hidden" name="redirect" value=""/></form>
+      <div id="login-error" class="blockScreen-error"></div>
+    </div>
+    <svg class="default lockoutScreen-svg" width="128" height="113" xmlns="http://www.w3.org/2000/svg">
+      <g class="svgAccessBlocked-paths" stroke="#00AFD7" stroke-width="3" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M61.919 3.41c1.15-1.883 3.018-1.875 4.162 0l59.475 97.475c1.15 1.884.282 3.411-1.92 3.411H4.364c-2.21 0-3.065-1.535-1.92-3.41L61.918 3.41z"></path>
+        <path d="M59.259 26.074h9.481v49.778h-9.481z"></path>
+        <circle cx="64" cy="90.074" r="4.741"></circle>
+        <path d="M33.185 111.407h61.63"></path>
+      </g>
+    </svg>
+    <svg class="default blockScreen-svg" height="66" viewBox="0 0 66 66" width="66" xmlns="http://www.w3.org/2000/svg">
+      <title>access blocked</title>
+      <g class="svgAccessBlocked-paths" fill="none" fill-rule="evenodd" stroke="#00AFD7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+        <path d="M33 1C15.327 1 1 15.327 1 33c0 17.673 14.327 32 32 32 17.673 0 32-14.327 32-32"></path>
+        <path d="M21.288 21.387v-4.344c0-3.624 2.936-6.562 6.564-6.562h17v10.93c1.35.26 2.37 1.446 2.37 2.883v.822c0 1.44-1.037 2.638-2.4 2.887-.437 6.106-5.53 10.924-11.752 10.924-6.213 0-11.302-4.816-11.75-10.9-1.435-.19-2.542-1.414-2.542-2.91v-.823c0-1.48 1.093-2.702 2.51-2.906zM27.435 38.926l-2.772 5.656h-6.598c-3.385 0-6.398 2.85-6.398 6.196v6.06m42.666-.134v-6.06c0-3.34-2.74-6.062-6.118-6.062h-7.413l-2.77-5.656M53.148 10.48H65v8.297H53.148zM55.52 3.37h7.11v7.11h-7.11z"></path>
+      </g>
+    </svg>
+    <div class="default blockScreen-customSchoolName" id="blockScreen-customSchoolName">Titanium Network</div>
+    <div class="default blockScreen-stripe">
+      <div class="blockScreenStripe-top">
+        <span data-translation="oops">Oops</span>,
+      </div>
+      <div class="default blockScreenStripe-website"><span id="host">google.com</span></div>
+      <div class="default blockScreenStripe-bottom">
+        <span data-translation="is_not_available_because">is not available because</span> <span id="reason">fuck you</span>.
+      </div>
+    </div>
+    <div class="default lockoutScreen-stripe">
+      <div class="lockoutScreen-stripeContent">
+        <span data-translation="your_access_to_the_internet">Your access to the internet has been suspended for </span> <span id="minutes"></span> <span data-translation="minutes_for_repeatedly_attempting">minutes for repeatedly attempting to visit blocked websites</span>.
+      </div>
+    </div>
+    <div id="rocket-block-screen-message" class="default blockScreen-action">
+      <span class="hidden" id="unknown-user" data-translation="browsing_as_a_guest">You are browsing as a slave</span>
+      <span class="hidden" id="known-user" data-translation="you_are_logged_in_as">You are logged in as <span id="username"></span> (IP Address: <span id="ip">69.69.69.69</span>).
+    </div>
+    <div class="default blockScreen-customBodyText" id="blockScreen-customBodyText">Please take a picture of this message and submit to em⁢erald@tit⁬aniumn️etwor⁯k.org if you feel you have received this message in error.</div>
+    <div class="blockScreen-customFooterText" id="blockScreen-customFooterText"></div>
+  </div>
+  <textarea id="translations" class="hidden">{&#34;en&#34;:{&#34;access_disabled&#34;:&#34;Internet Access has been disabled on this device&#34;,&#34;code&#34;:&#34;Code&#34;,&#34;custom_block_list&#34;:&#34;it is on a custom block list&#34;,&#34;file_ext_blocked&#34;:&#34;the file extension is blocked&#34;,&#34;ip_address&#34;:&#34;IP Address&#34;,&#34;is_not_available_because&#34;:&#34;is not available because&#34;,&#34;categorized_as&#34;:&#34;it is categorized as&#34;,&#34;logged_in_as&#34;:&#34;You are logged in as&#34;,&#34;minutes_for_repeatedly_attempting&#34;:&#34;minutes for repeatedly attempting to visit blocked websites&#34;,&#34;oops&#34;:&#34;Oops&#34;,&#34;org_youtube_rules&#34;:&#34;of your organization&#39;s YouTube rules&#34;,&#34;override&#34;:&#34;Override&#34;,&#34;search_term_used&#34;:&#34;of the search term used&#34;,&#34;your_access_to_the_internet&#34;:&#34;Your access to the internet has been suspended for&#34;,&#34;webzone_rule&#34;:&#34;of a WebZone rule&#34;}}</textarea>
+  <textarea id="categories" class="hidden">{&#34;67&#34;:&#34;access-denied&#34;,&#34;3&#34;:&#34;ads&#34;,&#34;103&#34;:&#34;adult.lifestyles&#34;,&#34;42&#34;:&#34;alcohol&#34;,&#34;5&#34;:&#34;audio-video&#34;,&#34;37&#34;:&#34;automobile&#34;,&#34;6&#34;:&#34;business&#34;,&#34;115&#34;:&#34;business.construction&#34;,&#34;10&#34;:&#34;business.finance&#34;,&#34;18&#34;:&#34;business.jobs&#34;,&#34;119&#34;:&#34;business.manufacturing&#34;,&#34;73&#34;:&#34;business.real_estate&#34;,&#34;57&#34;:&#34;computers&#34;,&#34;138&#34;:&#34;computers.analytics&#34;,&#34;128&#34;:&#34;computers.consumer_electronics&#34;,&#34;127&#34;:&#34;computers.filehosting&#34;,&#34;136&#34;:&#34;computers.storage&#34;,&#34;34&#34;:&#34;directory&#34;,&#34;8&#34;:&#34;drugs&#34;,&#34;9&#34;:&#34;education&#34;,&#34;47&#34;:&#34;education.arts&#34;,&#34;74&#34;:&#34;education.games&#34;,&#34;99&#34;:&#34;education.history&#34;,&#34;41&#34;:&#34;education.lifestyles&#34;,&#34;48&#34;:&#34;education.literature&#34;,&#34;129&#34;:&#34;education.media&#34;,&#34;50&#34;:&#34;education.music&#34;,&#34;44&#34;:&#34;education.science&#34;,&#34;80&#34;:&#34;education.sex&#34;,&#34;75&#34;:&#34;education.social_science&#34;,&#34;45&#34;:&#34;entertainment&#34;,&#34;131&#34;:&#34;entertainment.radio_and_tv&#34;,&#34;7&#34;:&#34;errors&#34;,&#34;105&#34;:&#34;expired&#34;,&#34;200&#34;:&#34;Facebook&#34;,&#34;95&#34;:&#34;family&#34;,&#34;76&#34;:&#34;family.food&#34;,&#34;43&#34;:&#34;family.health&#34;,&#34;58&#34;:&#34;family.religion&#34;,&#34;11&#34;:&#34;forums&#34;,&#34;71&#34;:&#34;forums.blogs&#34;,&#34;118&#34;:&#34;forums.dating&#34;,&#34;19&#34;:&#34;forums.email&#34;,&#34;61&#34;:&#34;forums.im&#34;,&#34;38&#34;:&#34;forums.newsgroups&#34;,&#34;60&#34;:&#34;forums.p2p&#34;,&#34;39&#34;:&#34;forums.personals&#34;,&#34;117&#34;:&#34;forums.social_networking&#34;,&#34;12&#34;:&#34;gambling&#34;,&#34;13&#34;:&#34;games&#34;,&#34;14&#34;:&#34;general&#34;,&#34;1001&#34;:&#34;General Staff Allow&#34;,&#34;15&#34;:&#34;government&#34;,&#34;56&#34;:&#34;ham&#34;,&#34;83&#34;:&#34;hobby&#34;,&#34;40&#34;:&#34;humor&#34;,&#34;202&#34;:&#34;Instagram&#34;,&#34;46&#34;:&#34;kids_and_teens&#34;,&#34;69&#34;:&#34;kids_and_teens.chat&#34;,&#34;68&#34;:&#34;law&#34;,&#34;1&#34;:&#34;local-allow&#34;,&#34;2&#34;:&#34;local-block&#34;,&#34;4&#34;:&#34;mature&#34;,&#34;100&#34;:&#34;mature.art&#34;,&#34;101&#34;:&#34;mature.bodyart&#34;,&#34;102&#34;:&#34;mature.games&#34;,&#34;70&#34;:&#34;mature.language&#34;,&#34;51&#34;:&#34;microsoft&#34;,&#34;49&#34;:&#34;music&#34;,&#34;20&#34;:&#34;news&#34;,&#34;126&#34;:&#34;offensive&#34;,&#34;113&#34;:&#34;parked&#34;,&#34;132&#34;:&#34;photography&#34;,&#34;203&#34;:&#34;Pinterest&#34;,&#34;112&#34;:&#34;plagarism&#34;,&#34;21&#34;:&#34;porn&#34;,&#34;94&#34;:&#34;porn.illicit&#34;,&#34;85&#34;:&#34;search&#34;,&#34;72&#34;:&#34;security&#34;,&#34;134&#34;:&#34;security.malware&#34;,&#34;116&#34;:&#34;security.nettools&#34;,&#34;28&#34;:&#34;security.proxy&#34;,&#34;133&#34;:&#34;security.shorteners&#34;,&#34;135&#34;:&#34;security.translators&#34;,&#34;33&#34;:&#34;security.warez&#34;,&#34;29&#34;:&#34;shopping&#34;,&#34;81&#34;:&#34;shopping.auctions&#34;,&#34;104&#34;:&#34;shopping.office_supplies&#34;,&#34;78&#34;:&#34;shopping.spam&#34;,&#34;79&#34;:&#34;society&#34;,&#34;97&#34;:&#34;society.crime&#34;,&#34;96&#34;:&#34;society.politics&#34;,&#34;55&#34;:&#34;spam&#34;,&#34;30&#34;:&#34;sports&#34;,&#34;82&#34;:&#34;sports.fantasy&#34;,&#34;98&#34;:&#34;sports.martial_arts&#34;,&#34;84&#34;:&#34;sports.youth&#34;,&#34;1004&#34;:&#34;Staff (7-12)&#34;,&#34;1003&#34;:&#34;Staff (Pk-6)&#34;,&#34;1006&#34;:&#34;Students (5-6)&#34;,&#34;1007&#34;:&#34;Students (7-8)&#34;,&#34;1008&#34;:&#34;Students (9-12)&#34;,&#34;1005&#34;:&#34;Students (PS-4)&#34;,&#34;31&#34;:&#34;suspicious&#34;,&#34;36&#34;:&#34;travel&#34;,&#34;201&#34;:&#34;Twitter&#34;,&#34;0&#34;:&#34;unknown&#34;,&#34;32&#34;:&#34;violence&#34;,&#34;137&#34;:&#34;violence.extremism&#34;,&#34;66&#34;:&#34;weapons&#34;,&#34;59&#34;:&#34;world&#34;,&#34;107&#34;:&#34;world.cn&#34;,&#34;86&#34;:&#34;world.de&#34;,&#34;87&#34;:&#34;world.es&#34;,&#34;88&#34;:&#34;world.fr&#34;,&#34;89&#34;:&#34;world.it&#34;,&#34;90&#34;:&#34;world.jp&#34;,&#34;108&#34;:&#34;world.kr&#34;,&#34;91&#34;:&#34;world.nl&#34;,&#34;106&#34;:&#34;world.pl&#34;,&#34;92&#34;:&#34;world.pt&#34;,&#34;93&#34;:&#34;world.ru&#34;,&#34;900&#34;:&#34;youtube&#34;}</textarea>
+
+
+</body></html>
